@@ -39,6 +39,19 @@ $RECYCLE.BIN/
 .Trashes
 .VolumeIcon.icns
 
+/*.xls
+/*.xlsx
+/*.docx
+/youngRatolis_21-04-2017/Photos/
+/Fibers_size_20-01-2017/Photos/
+/Fibers_size_20-01-2017/Data_Rois/
+/Fibers_size_20-01-2017/*.xlsx
+/Fibers_size_20-01-2017/*.docx
+/Fibers_size_20-01-2017/*.txt
+/Collagen_17-03-2016/Data/
+/Collagen_17-03-2016/Photos/
+/Collagen_17-03-2016/*.txt
+
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop

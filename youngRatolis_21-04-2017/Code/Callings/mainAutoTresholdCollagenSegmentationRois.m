@@ -10,6 +10,7 @@ PathCurrent = struc.Name;
 ratolis = dir(PathCurrent);
 ratolis(1:2)=[];
 
+dataCollagen=cell(0);
 
 for i=1:length(ratolis)
     
@@ -46,8 +47,8 @@ for i=1:length(ratolis)
                 name=photo(1:end-4);
                 load([name '_data_ROIS\' name '_data_ROIs.mat'])
                 
-                if ~size(mask_ROIS,1)
-                    Area_norm_ROIS=zeros(size(mask_ROIS,1));
+                if  size(mask_ROIS,1)>0 
+                    Area_norm_ROIS=zeros(size(mask_ROIS,2));
                     for r=1:size(mask_ROIS,1)
 
                         cd ..\..\..
@@ -74,8 +75,12 @@ for i=1:length(ratolis)
                         cd ..
 
                     end
+                    save([name '_data_ROIS\Data_area.mat'],'Area_norm_ROIS')
+                    
+                    dataCollagen(end+1,1:5)=[muscle,ratoli,name,{mean(Area_norm_ROIS)},{std(Area_norm_ROIS)}];
+                    
                 end
-                save([name '_data_ROIS\Data_area.mat'],'Area_norm_ROIS')
+                
                 Area_norm_ROIS=[];
             end
             
@@ -90,6 +95,10 @@ for i=1:length(ratolis)
     
  
 end
+T=cell2table(dataCollagen);
+T.Properties.VariableNames = {'muscle','mouse','photo','mean_collagen_proportion','std_collagen_proportion'};
+writetable(T, ['..\Data_Rois\collagen_' date '.xls']);
+
 
 cd ..
 cd Code
